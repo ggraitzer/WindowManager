@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using WindowManager.WindowLibrary;
 using WindowManager.WindowLibrary.Models;
 
@@ -20,9 +21,13 @@ namespace WindowManager.ConsoleClient
             do
             {
                 if (firstLoop)
+                {
                     Console.WriteLine();
+                }
                 else
+                {
                     firstLoop = false;
+                }
 
                 List<Window> windowList = WindowUtilities.GetWindows().OrderBy(w => w.Name).ToList();
 
@@ -65,14 +70,29 @@ namespace WindowManager.ConsoleClient
                     Console.Write("Enter new bottom: ");
                     var bottom = int.Parse(Console.ReadLine());
 
-                    WindowUtilities.MoveWindow(window.Id, left, top, right - left, bottom - top + 50);
+                    Rect rect = new Rect();
+                    rect.Left = left;
+                    rect.Top = top;
+                    rect.Right = right;
+                    rect.Bottom = bottom;
+
+                    WindowUtilities.CreateBox(rect);
+
+                    Console.Write($"Move window {window.Name} to this location? y/n: ");
+
+                    if (Console.ReadKey().KeyChar == 'y')
+                    {
+                        WindowUtilities.MoveWindow(window.Id, left, top, right - left, bottom - top + 50);
+                    }
+
+                    WindowUtilities.RemoveBox();
                 }
                 else
                 {
                     Console.WriteLine("Not Adjusting window.");
                 }
 
-                Console.Write("Continue? y/n");
+                Console.Write("Continue? y/n: ");
             } while (Console.ReadKey().KeyChar == 'y');
         }
     }

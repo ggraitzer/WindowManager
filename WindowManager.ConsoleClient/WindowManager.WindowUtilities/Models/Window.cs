@@ -11,11 +11,11 @@ namespace WindowManager.WindowLibrary.Models
     {
         public IntPtr Id;
         public string Name;
-        public RECT Rectangle;
+        public Rect Rectangle;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct RECT
+    public struct Rect
     {
         public int Left;        // x position of upper-left corner
         public int Top;         // y position of upper-left corner
