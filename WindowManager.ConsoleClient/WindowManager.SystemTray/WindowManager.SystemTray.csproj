@@ -60,6 +60,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowManager.cs" />
+    <Compile Include="WindowModel.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -70,6 +74,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\WindowModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -89,6 +94,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MutexManager\MutexManager.csproj">
+      <Project>{ce119d2d-f9b6-4fcf-b527-40caeaef029c}</Project>
+      <Name>MutexManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WindowManager.Logger\WindowManager.Logging.csproj">
       <Project>{085b3102-89b2-404d-91ed-8308883f876e}</Project>
       <Name>WindowManager.Logging</Name>
@@ -96,10 +105,6 @@
     <ProjectReference Include="..\WindowManager.WindowUtilities\WindowManager.WindowLibrary.csproj">
       <Project>{c4127b32-c3be-4a77-b247-78a169cfd312}</Project>
       <Name>WindowManager.WindowLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Users\ggrai_000\Downloads\HostSwitcher solution 1.1\HostSwitcher\MutexManager\MutexManager.csproj">
-      <Project>{ce119d2d-f9b6-4fcf-b527-40caeaef029c}</Project>
-      <Name>MutexManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

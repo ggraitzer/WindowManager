@@ -29,7 +29,7 @@ namespace WindowManager.SystemTray
         /// </value>
         public string CurrentToolTip { get; private set; }
 
-        private WindowManager windowManager;
+        private WindowManagerTool windowManager;
         private Container components;
         private NotifyIcon notifyIcon;
         private Logger logger;
@@ -47,7 +47,7 @@ namespace WindowManager.SystemTray
             DefaultTooltip = "Window Manager";
 
             InitializeContext();
-            windowManager = new WindowManager(notifyIcon);
+            windowManager = new WindowManagerTool(notifyIcon);
 
             logger.LogInformation("- CustomApplicationContext()");
         }
@@ -62,6 +62,7 @@ namespace WindowManager.SystemTray
             if (mainForm == null)
             {
                 mainForm = new MainForm();
+                mainForm.Text = "Window Manager";
                 mainForm.FormClosed += MainForm_FormClosed;
                 mainForm.Show();
             }

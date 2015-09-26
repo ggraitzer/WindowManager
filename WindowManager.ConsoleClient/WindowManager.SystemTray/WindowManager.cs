@@ -9,11 +9,11 @@ using WindowManager.WindowLibrary;
 
 namespace WindowManager.SystemTray
 {
-    class WindowManager
+    class WindowManagerTool
     {
         private readonly NotifyIcon notifyIcon;
         
-        public WindowManager(NotifyIcon notifyIcon)
+        public WindowManagerTool(NotifyIcon notifyIcon)
         {
             this.notifyIcon = notifyIcon;
         }

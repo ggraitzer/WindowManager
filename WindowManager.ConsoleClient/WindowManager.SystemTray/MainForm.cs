@@ -7,14 +7,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowManager.WindowLibrary;
+using WindowManager.WindowLibrary.Models;
 
 namespace WindowManager.SystemTray
 {
     public partial class MainForm : Form
     {
+        private const string IconFileName = "favicon.ico";
+
         public MainForm()
         {
+            this.Icon = new Icon(IconFileName);
+            this.Text = "Window Manager";
             InitializeComponent();
+            UpdateWindowList();
+        }
+
+        private void UpdateWindowList()
+        {
+            var windowList = WindowUtilities.GetWindows();
+
+            windowModelBindingSource.Clear();
+
+            windowList.ToList().ForEach(win => windowModelBindingSource.Add(new WindowModel
+            {
+                Name = win.Name,
+                Rect = new Rectangle(win.Rectangle.Left, win.Rectangle.Top, win.Rectangle.Right - win.Rectangle.Left, win.Rectangle.Bottom - win.Rectangle.Top)
+            }));
+        }
+
+        private void windowListButton_Click(object sender, EventArgs e)
+        {
+            UpdateWindowList();
+        }
+
+        private void WindowListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (windowModelBindingSource != null && windowModelBindingSource.Current != null)
+            {
+                windowHandleTextBox.Text = ((WindowModel)(windowModelBindingSource.Current)).Name;
+            }
         }
     }
 }
