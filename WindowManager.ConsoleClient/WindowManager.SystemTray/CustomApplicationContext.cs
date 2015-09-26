@@ -41,7 +41,7 @@ namespace WindowManager.SystemTray
         /// </summary>
         public CustomApplicationContext()
         {
-            logger = new Logger($"{AppContext.BaseDirectory}\\Logs");
+            logger = new Logger($"{AppContext.BaseDirectory}Logs");
             logger.LogInformation("**********APPLICATION START**********");
             logger.LogInformation("+ CustomApplicationContext()");
             DefaultTooltip = "Window Manager";

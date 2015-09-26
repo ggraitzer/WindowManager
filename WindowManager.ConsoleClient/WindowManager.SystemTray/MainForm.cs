@@ -46,7 +46,12 @@ namespace WindowManager.SystemTray
         {
             if (windowModelBindingSource != null && windowModelBindingSource.Current != null)
             {
-                windowHandleTextBox.Text = ((WindowModel)(windowModelBindingSource.Current)).Name;
+                //WindowModel window = (WindowModel)windowModelBindingSource.Current;
+                //windowHandleTextBox.Text = window.Name;
+                //leftTextBox.Text = window.Rect.Left.ToString();
+                //topTextBox.Text = window.Rect.Top.ToString();
+                //rightTextBox.Text = window.Rect.Right.ToString();
+                //bottomTextBox.Text = window.Rect.Bottom.ToString();
             }
         }
     }

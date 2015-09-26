@@ -52,11 +52,11 @@ namespace WindowManager.Logging
 
         private void Log(string log, string level)
         {
-            string timeStamp = DateTime.Now.ToString();
+            string timeStamp = DateTime.Now.ToString("MMddyyyyHmmss");
 
             if (new FileInfo(logFile).Length >= FileSizeLimit)
             {
-                string newFileName = $"{Path.GetFileNameWithoutExtension(logFile)}_{timeStamp}.txt";
+                string newFileName = $"{logLocation}\\{Path.GetFileNameWithoutExtension(logFile)}_{timeStamp}.txt";
                 File.Move(logFile, newFileName);
             }
 
