@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using WindowManager.Logging;
+using WindowManager.WindowLibrary;
 
 namespace WindowManager.SystemTray
 {
@@ -11,8 +13,22 @@ namespace WindowManager.SystemTray
     {
         private const string IconFileName = "favicon.ico";
 
+        /// <summary>
+        /// Gets the default tooltip.
+        /// </summary>
+        /// <value>
+        /// The default tooltip.
+        /// </value>
         public string DefaultTooltip { get; private set; }
-        
+
+        /// <summary>
+        /// Gets the current tool tip.
+        /// </summary>
+        /// <value>
+        /// The current tool tip.
+        /// </value>
+        public string CurrentToolTip { get; private set; }
+
         private WindowManager windowManager;
         private Container components;
         private NotifyIcon notifyIcon;
@@ -28,6 +44,7 @@ namespace WindowManager.SystemTray
             logger = new Logger($"{AppContext.BaseDirectory}\\Logs");
             logger.LogInformation("**********APPLICATION START**********");
             logger.LogInformation("+ CustomApplicationContext()");
+            DefaultTooltip = "Window Manager";
 
             InitializeContext();
             windowManager = new WindowManager(notifyIcon);
@@ -57,6 +74,11 @@ namespace WindowManager.SystemTray
             logger.LogInformation("- ShowForm()");
         }
 
+        /// <summary>
+        /// Handles the FormClosed event of the MainForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             logger.LogInformation("+ MainForm_FormClosed()");
@@ -82,11 +104,24 @@ namespace WindowManager.SystemTray
                 Visible = true
             };
 
+            notifyIcon.MouseMove += NotifyIcon_MouseMove;
             notifyIcon.ContextMenuStrip.Opening += ContextMenuStrip_Opening;
             notifyIcon.DoubleClick += notifyIcon_DoubleClick;
             notifyIcon.MouseUp += notifyIcon_MouseUp;
 
             logger.LogInformation("- InitializeContext()");
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the NotifyIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void NotifyIcon_MouseMove(object sender, MouseEventArgs e)
+        {
+            var windowCount = WindowUtilities.GetWindows().Count();
+
+            CurrentToolTip = notifyIcon.Text = $"{DefaultTooltip}{Environment.NewLine}{windowCount} Windows Detected";
         }
 
         #region NotifyIcon Events
