@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowManager.SystemTray", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowManager.Logging", "WindowManager.Logger\WindowManager.Logging.csproj", "{085B3102-89B2-404D-91ED-8308883F876E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutexManager", "C:\Users\ggrai_000\Downloads\HostSwitcher solution 1.1\HostSwitcher\MutexManager\MutexManager.csproj", "{CE119D2D-F9B6-4FCF-B527-40CAEAEF029C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{085B3102-89B2-404D-91ED-8308883F876E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{085B3102-89B2-404D-91ED-8308883F876E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{085B3102-89B2-404D-91ED-8308883F876E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE119D2D-F9B6-4FCF-B527-40CAEAEF029C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE119D2D-F9B6-4FCF-B527-40CAEAEF029C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE119D2D-F9B6-4FCF-B527-40CAEAEF029C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE119D2D-F9B6-4FCF-B527-40CAEAEF029C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,4 @@
-﻿using Configuration;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
@@ -13,9 +12,7 @@ namespace WindowManager.SystemTray
         private const string IconFileName = "favicon.ico";
 
         public string DefaultTooltip { get; private set; }
-
-        private bool contextMenuLoaded = false;
-
+        
         private WindowManager windowManager;
         private Container components;
         private NotifyIcon notifyIcon;
@@ -33,9 +30,7 @@ namespace WindowManager.SystemTray
             logger.LogInformation("+ CustomApplicationContext()");
 
             InitializeContext();
-            windowManager = new WindowManager();
-
-            ShowForm();
+            windowManager = new WindowManager(notifyIcon);
 
             logger.LogInformation("- CustomApplicationContext()");
         }
@@ -46,8 +41,6 @@ namespace WindowManager.SystemTray
         private void ShowForm()
         {
             logger.LogInformation("+ ShowForm()");
-
-            MessageBox.Show(ConfigurationManager.AppSettings["TestConfig"].ToString());
 
             if (mainForm == null)
             {
@@ -141,12 +134,7 @@ namespace WindowManager.SystemTray
 
             e.Cancel = false;
 
-            if (!contextMenuLoaded)
-            {
-                LoadContextMenuStripItemList();
-
-                contextMenuLoaded = true;
-            }
+            LoadContextMenuStripItemList();
 
             logger.LogInformation("- ContextMenuStrip_Opening()");
         }
@@ -155,14 +143,14 @@ namespace WindowManager.SystemTray
         {
             logger.LogInformation("+ LoadContextMenuStripItemList()");
 
+            windowManager.BuildContextMenu(notifyIcon.ContextMenuStrip);
+
             notifyIcon.ContextMenuStrip.Items.AddRange(new ToolStripItem[]
             {
                 windowManager.ToolStripMenuItemWithHandler("&Show", showItem_Click),
                 new ToolStripSeparator(),
                 windowManager.ToolStripMenuItemWithHandler("&Exit", exitItem_Click)
             });
-
-            contextMenuLoaded = true;
 
             logger.LogInformation("- LoadContextMenuStripItemList()");
         }

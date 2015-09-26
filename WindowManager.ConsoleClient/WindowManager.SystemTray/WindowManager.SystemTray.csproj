@@ -34,10 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Configuration, Version=0.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Configuration.0.1.3\lib\net35\Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -74,7 +70,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,6 +96,10 @@
     <ProjectReference Include="..\WindowManager.WindowUtilities\WindowManager.WindowLibrary.csproj">
       <Project>{c4127b32-c3be-4a77-b247-78a169cfd312}</Project>
       <Name>WindowManager.WindowLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ggrai_000\Downloads\HostSwitcher solution 1.1\HostSwitcher\MutexManager\MutexManager.csproj">
+      <Project>{ce119d2d-f9b6-4fcf-b527-40caeaef029c}</Project>
+      <Name>MutexManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
